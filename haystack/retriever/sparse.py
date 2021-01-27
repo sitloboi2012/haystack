@@ -98,16 +98,18 @@ Paragraph = namedtuple("Paragraph", ["paragraph_id", "document_id", "text", "met
 
 
 class TfidfRetriever(BaseRetriever):
-    """
-    Read all documents from a SQL backend.
-
-    Split documents into smaller units (eg, paragraphs or pages) to reduce the
-    computations when text is passed on to a Reader for QA.
-
-    It uses sklearn's TfidfVectorizer to compute a tf-idf matrix.
-    """
 
     def __init__(self, document_store: BaseDocumentStore):
+
+        """
+        Read all documents from a SQL backend.
+
+        Split documents into smaller units (eg, paragraphs or pages) to reduce the
+        computations when text is passed on to a Reader for QA.
+
+        It uses sklearn's TfidfVectorizer to compute a tf-idf matrix.
+        """
+        
         self.vectorizer = TfidfVectorizer(
             lowercase=True,
             stop_words=None,
